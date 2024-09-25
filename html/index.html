@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>No Wheat, No Worries</title>
-    <link rel="stylesheet" href="CSS/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/script.js"></script>
 </head>
 <body>
     <header>
         <nav>
             <div class="logo">
-                <h1>No Wheat, No Worries</h1>
+                <img src="../images/logo.png" alt="No Wheat, No Worries Logo">
             </div>
             <ul class="nav-links">
                 <li><a href="#">Home</a></li>
@@ -24,12 +25,28 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h2>Delicious Gluten-Free Recipes</h2>
+            <h1>Delicious Gluten-Free Recipes</h1>
             <p>Discover amazing alternatives that taste just as good, if not better!</p>
             <a href="#" class="cta-button">Explore Recipes</a>
         </div>
     </section>
 
+    <!-- Latest Posts Section -->
+    <section class="latest-posts">
+        <h2>Latest Posts</h2>
+        <div class="carousel">
+            <div class="carousel-track-container">
+                <ul class="carousel-track">
+                    <!-- Dynamic content will be inserted here via JavaScript -->
+                </ul>
+            </div>
+            <!-- Navigation arrows -->
+            <button class="carousel-button carousel-button-left">←</button>
+            <button class="carousel-button carousel-button-right">→</button>
+        </div>
+    </section>
+
+    <!-- Popular Recipes Section -->
     <section class="recipes">
         <h2>Popular Recipes</h2>
         <div class="recipe-cards">
@@ -62,5 +79,8 @@
             <li><a href="#">Pinterest</a></li>
         </ul>
     </footer>
+
+    <!-- Include external JS -->
+    <script src="JS/carousel.js"></script>
 </body>
 </html>
