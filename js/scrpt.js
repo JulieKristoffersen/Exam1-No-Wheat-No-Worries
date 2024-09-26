@@ -6,7 +6,7 @@ let slideWidth;
 
 // Fetch posts from the WordPress REST API
 async function fetchPosts() {
-    const response = await fetch('https://your-wordpress-site.com/wp-json/wp/v2/posts');
+    const response = await fetch('https://julnys.no/wp-json/wp/v2/posts');
     const posts = await response.json();
     return posts;
 }
