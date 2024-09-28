@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Fetch posts from the WordPress REST API for carousel
     async function fetchPosts() {
-        const response = await fetch('https://julnys.no');
+        const response = await fetch('https://julnys.no/wp-json/wp/v2/posts');
         const posts = await response.json();
         return posts;
     }
