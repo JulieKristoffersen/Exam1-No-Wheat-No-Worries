@@ -5,6 +5,18 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentSlide = 0;
     let slideWidth;
 
+    document.addEventListener("DOMContentLoaded", function () {
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+    
+        // Toggle navigation menu on hamburger click
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    
+        // Existing carousel and recipe loading code...
+    });
+
     // Fetch posts from the WordPress REST API for carousel
     async function fetchPosts() {
         const response = await fetch('https://julnys.no/wp-json/wp/v2/posts');
@@ -12,14 +24,23 @@ document.addEventListener("DOMContentLoaded", function () {
         return posts;
     }
 
+    // Fetch the featured image URL for a given post
+    async function fetchFeaturedImage(imageId) {
+        if (!imageId) return 'default-image.jpg'; // Return a default image if no ID
+        const response = await fetch(`https://julnys.no/wp-json/wp/v2/media/${imageId}`);
+        const image = await response.json();
+        return image.source_url; // Return the image URL
+    }
+
     // Function to create a slide for each post
-    function createSlide(post) {
+    async function createSlide(post) {
         const slide = document.createElement('li');
         slide.classList.add('carousel-slide');
         slide.style.minWidth = '25%'; // Show 4 posts at a time
 
+        const imgSrc = await fetchFeaturedImage(post.featured_media);
         const img = document.createElement('img');
-        img.src = post.featured_media_src_url || 'default-image.jpg'; // Use featured image or default
+        img.src = imgSrc; // Use the fetched image URL
         img.alt = post.title.rendered;
         img.style.width = '100%';
         img.style.height = '150px';
@@ -42,32 +63,32 @@ document.addEventListener("DOMContentLoaded", function () {
     // Load posts and populate the carousel
     async function loadPosts() {
         const posts = await fetchPosts();
-        
-        posts.forEach(post => {
-            const slide = createSlide(post);
-            track.appendChild(slide);
-        });
 
-        // Set slide width for dynamic post loading
+        // Clear existing slides before appending new ones
+        track.innerHTML = '';
+
+        for (const post of posts) {
+            const slide = await createSlide(post);
+            track.appendChild(slide);
+        }
+
         const slides = Array.from(track.children);
         slideWidth = slides[0].getBoundingClientRect().width;
 
-        // Arrange the slides next to one another
+        // Set the position of each slide
         slides.forEach((slide, index) => {
             slide.style.left = slideWidth * index + 'px';
         });
     }
 
-    // Move to the next slide
     nextButton.addEventListener('click', () => {
         const slides = Array.from(track.children);
-        if (currentSlide < slides.length - 4) { // Show 4 posts at a time
+        if (currentSlide < slides.length - 4) { 
             currentSlide++;
             track.style.transform = 'translateX(-' + (slideWidth * currentSlide) + 'px)';
         }
     });
 
-    // Move to the previous slide
     prevButton.addEventListener('click', () => {
         if (currentSlide > 0) {
             currentSlide--;
@@ -75,36 +96,28 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Load the posts and initialize the carousel
     loadPosts();
 
-    // Fetch and display recipes dynamically from WordPress
     const recipeContainer = document.querySelector('.recipe-cards');
 
-    async function fetchRecipes() {
-        const response = await fetch('https://your-wordpress-site.com/wp-json/wp/v2/recipes');
-        const recipes = await response.json();
-        return recipes;
-    }
-
     async function loadRecipes() {
-        const recipes = await fetchRecipes();
+        const recipes = await fetchPosts(); // Assuming recipes are also posts
 
-        recipeContainer.innerHTML = ''; // Clear existing recipes
+        recipeContainer.innerHTML = ''; 
 
-        recipes.forEach(recipe => {
+        for (const recipe of recipes) {
+            const imgSrc = await fetchFeaturedImage(recipe.featured_media);
             const recipeCard = `
                 <div class="recipe-card">
-                    <img src="${recipe.featured_media_src_url}" alt="${recipe.title.rendered}">
+                    <img src="${imgSrc}" alt="${recipe.title.rendered}">
                     <h3>${recipe.title.rendered}</h3>
                     <p>${recipe.excerpt.rendered}</p>
                     <a href="${recipe.link}" class="recipe-button">Read More</a>
                 </div>
             `;
             recipeContainer.innerHTML += recipeCard;
-        });
+        }
     }
 
-    // Load the recipes from the WordPress API
     loadRecipes();
 });
