@@ -1,10 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const track = document.querySelector('.carousel-track');
-    const nextButton = document.querySelector('.carousel-button-right');
-    const prevButton = document.querySelector('.carousel-button-left');
-    let currentSlide = 0;
-    let slideWidth;
+    // Hamburger menu functionality
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
 
+    // Toggle navigation menu on hamburger click
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
     document.addEventListener("DOMContentLoaded", function () {
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
@@ -12,10 +14,15 @@ document.addEventListener("DOMContentLoaded", function () {
         // Toggle navigation menu on hamburger click
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+            hamburger.classList.toggle('is-active');
         });
-    
-        // Existing carousel and recipe loading code...
     });
+    // Carousel functionality
+    const track = document.querySelector('.carousel-track');
+    const nextButton = document.querySelector('.carousel-button-right');
+    const prevButton = document.querySelector('.carousel-button-left');
+    let currentSlide = 0;
+    let slideWidth;
 
     // Fetch posts from the WordPress REST API for carousel
     async function fetchPosts() {
@@ -98,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     loadPosts();
 
+    // Recipe loading functionality
     const recipeContainer = document.querySelector('.recipe-cards');
 
     async function loadRecipes() {
