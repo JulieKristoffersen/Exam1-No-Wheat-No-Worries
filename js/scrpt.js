@@ -2,18 +2,38 @@ document.addEventListener("DOMContentLoaded", function () {
     // Hamburger menu functionality
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
+    const closeHamburger = document.querySelector('.close-hamburger'); // Close button inside the menu
 
     // Toggle navigation menu on hamburger click
     hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        hamburger.classList.toggle('is-active');
+        const isActive = navLinks.classList.contains('active');
 
-        // Toggle between hamburger and 'X' icon
-        if (hamburger.classList.contains('is-active')) {
-            hamburger.innerHTML = '&times;'; // Close icon
-        } else {
+        // Toggle the active class for showing or hiding the menu
+        if (isActive) {
+            navLinks.classList.remove('active');
             hamburger.innerHTML = '&#9776;'; // Hamburger icon
+        } else {
+            navLinks.classList.add('active');
+            hamburger.innerHTML = '&times;'; // Close icon
         }
+
+        hamburger.classList.toggle('is-active'); // Optional: to style the hamburger itself
+    });
+
+    // Close the menu when the inside close button is clicked
+    closeHamburger.addEventListener('click', () => {
+        navLinks.classList.remove('active'); // Hide the menu
+        hamburger.innerHTML = '&#9776;'; // Change back to hamburger icon
+        hamburger.classList.remove('is-active'); // Reset hamburger style
+    });
+
+    // Close the menu when any nav link is clicked
+    document.querySelectorAll('.nav-links a').forEach(item => {
+        item.addEventListener('click', () => {
+            navLinks.classList.remove('active'); // Hide the menu
+            hamburger.innerHTML = '&#9776;'; // Change back to hamburger icon
+            hamburger.classList.remove('is-active'); // Reset hamburger style
+        });
     });
 
     // Carousel functionality
