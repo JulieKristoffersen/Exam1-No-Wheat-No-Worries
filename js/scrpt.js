@@ -6,17 +6,16 @@ document.addEventListener("DOMContentLoaded", function () {
     // Toggle navigation menu on hamburger click
     hamburger.addEventListener('click', () => {
         navLinks.classList.toggle('active');
+        hamburger.classList.toggle('is-active');
+
+        // Toggle between hamburger and 'X' icon
+        if (hamburger.classList.contains('is-active')) {
+            hamburger.innerHTML = '&times;'; // Close icon
+        } else {
+            hamburger.innerHTML = '&#9776;'; // Hamburger icon
+        }
     });
-    document.addEventListener("DOMContentLoaded", function () {
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-    
-        // Toggle navigation menu on hamburger click
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            hamburger.classList.toggle('is-active');
-        });
-    });
+
     // Carousel functionality
     const track = document.querySelector('.carousel-track');
     const nextButton = document.querySelector('.carousel-button-right');
