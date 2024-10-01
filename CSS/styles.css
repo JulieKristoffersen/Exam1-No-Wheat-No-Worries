@@ -68,8 +68,8 @@ header {
         position: fixed;
         top: 0;
         right: 0;
-        height: 40%; /* Full screen height */
-        width: 40%; /* Adjust width to make it a large menu that covers part of the screen */
+        height: 60%; /* Full screen height */
+        width: 50%; /* Adjust width to make it a large menu that covers part of the screen */
         background-color: #6c9d46;
         padding: 20px;
         transition: transform 0.3s ease;
@@ -356,3 +356,4 @@ footer p {
         width: 95%;
     }
 }
+
