@@ -2,37 +2,31 @@ document.addEventListener("DOMContentLoaded", function () {
     // Hamburger menu functionality
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
-    const closeHamburger = document.querySelector('.close-hamburger'); // Close button inside the menu
+    const closeHamburger = document.querySelector('.close-hamburger');
 
-    // Toggle navigation menu on hamburger click
     hamburger.addEventListener('click', () => {
         const isActive = navLinks.classList.contains('active');
-
-        // Toggle the active class for showing or hiding the menu
         if (isActive) {
             navLinks.classList.remove('active');
-            hamburger.innerHTML = '&#9776;'; // Hamburger icon
+            hamburger.innerHTML = '&#9776;';
         } else {
             navLinks.classList.add('active');
-            hamburger.innerHTML = '&times;'; // Close icon
+            hamburger.innerHTML = '&times;';
         }
-
-        hamburger.classList.toggle('is-active'); // Optional: to style the hamburger itself
+        hamburger.classList.toggle('is-active');
     });
 
-    // Close the menu when the inside close button is clicked
     closeHamburger.addEventListener('click', () => {
-        navLinks.classList.remove('active'); // Hide the menu
-        hamburger.innerHTML = '&#9776;'; // Change back to hamburger icon
-        hamburger.classList.remove('is-active'); // Reset hamburger style
+        navLinks.classList.remove('active');
+        hamburger.innerHTML = '&#9776;';
+        hamburger.classList.remove('is-active');
     });
 
-    // Close the menu when any nav link is clicked
     document.querySelectorAll('.nav-links a').forEach(item => {
         item.addEventListener('click', () => {
-            navLinks.classList.remove('active'); // Hide the menu
-            hamburger.innerHTML = '&#9776;'; // Change back to hamburger icon
-            hamburger.classList.remove('is-active'); // Reset hamburger style
+            navLinks.classList.remove('active');
+            hamburger.innerHTML = '&#9776;';
+            hamburger.classList.remove('is-active');
         });
     });
 
@@ -43,30 +37,26 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentSlide = 0;
     let slideWidth;
 
-    // Fetch posts from the WordPress REST API for carousel
     async function fetchPosts() {
         const response = await fetch('https://julnys.no/wp-json/wp/v2/posts');
         const posts = await response.json();
         return posts;
     }
 
-    // Fetch the featured image URL for a given post
     async function fetchFeaturedImage(imageId) {
-        if (!imageId) return 'default-image.jpg'; // Return a default image if no ID
+        if (!imageId) return 'default-image.jpg';
         const response = await fetch(`https://julnys.no/wp-json/wp/v2/media/${imageId}`);
         const image = await response.json();
-        return image.source_url; // Return the image URL
+        return image.source_url;
     }
 
-    // Function to create a slide for each post
     async function createSlide(post) {
         const slide = document.createElement('li');
         slide.classList.add('carousel-slide');
-        slide.style.minWidth = '25%'; // Show 4 posts at a time
 
         const imgSrc = await fetchFeaturedImage(post.featured_media);
         const img = document.createElement('img');
-        img.src = imgSrc; // Use the fetched image URL
+        img.src = imgSrc;
         img.alt = post.title.rendered;
         img.style.width = '100%';
         img.style.height = '150px';
@@ -86,11 +76,8 @@ document.addEventListener("DOMContentLoaded", function () {
         return slide;
     }
 
-    // Load posts and populate the carousel
     async function loadPosts() {
         const posts = await fetchPosts();
-
-        // Clear existing slides before appending new ones
         track.innerHTML = '';
 
         for (const post of posts) {
@@ -101,7 +88,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const slides = Array.from(track.children);
         slideWidth = slides[0].getBoundingClientRect().width;
 
-        // Set the position of each slide
         slides.forEach((slide, index) => {
             slide.style.left = slideWidth * index + 'px';
         });
@@ -109,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     nextButton.addEventListener('click', () => {
         const slides = Array.from(track.children);
-        if (currentSlide < slides.length - 4) { 
+        if (currentSlide < slides.length - 1) {
             currentSlide++;
             track.style.transform = 'translateX(-' + (slideWidth * currentSlide) + 'px)';
         }
@@ -123,28 +109,4 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     loadPosts();
-
-    // Recipe loading functionality
-    const recipeContainer = document.querySelector('.recipe-cards');
-
-    async function loadRecipes() {
-        const recipes = await fetchPosts(); // Assuming recipes are also posts
-
-        recipeContainer.innerHTML = ''; 
-
-        for (const recipe of recipes) {
-            const imgSrc = await fetchFeaturedImage(recipe.featured_media);
-            const recipeCard = `
-                <div class="recipe-card">
-                    <img src="${imgSrc}" alt="${recipe.title.rendered}">
-                    <h3>${recipe.title.rendered}</h3>
-                    <p>${recipe.excerpt.rendered}</p>
-                    <a href="${recipe.link}" class="recipe-button">Read More</a>
-                </div>
-            `;
-            recipeContainer.innerHTML += recipeCard;
-        }
-    }
-
-    loadRecipes();
 });
