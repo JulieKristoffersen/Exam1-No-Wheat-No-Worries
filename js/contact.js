@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             messageError.textContent = '';
         }
 
+
         if (isValid) {
             alert('Form submitted successfully!');
             form.reset(); 
