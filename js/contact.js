@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         let isValid = true;
 
-        // Name validation
         const name = document.getElementById('name');
         const nameError = document.getElementById('nameError');
         if (name.value.trim().length <= 5) {
@@ -15,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
             nameError.textContent = '';
         }
 
-        // Email validation
         const email = document.getElementById('email');
         const emailError = document.getElementById('emailError');
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -26,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
             emailError.textContent = '';
         }
 
-        // Subject validation
         const subject = document.getElementById('subject');
         const subjectError = document.getElementById('subjectError');
         if (subject.value.trim().length <= 15) {
@@ -36,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
             subjectError.textContent = '';
         }
 
-        // Message validation
         const message = document.getElementById('message');
         const messageError = document.getElementById('messageError');
         if (message.value.trim().length <= 25) {
@@ -46,10 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
             messageError.textContent = '';
         }
 
-        // If form is valid, submit it
         if (isValid) {
             alert('Form submitted successfully!');
-            form.reset(); // Clear the form after successful submission
+            form.reset(); 
         }
     });
 });

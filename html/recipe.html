@@ -12,7 +12,9 @@
 <body>
     <header>
         <div class="logo">
-            <img src="../images/logo.png" alt="No Wheat, No Worries Logo">
+            <a href="../html/index.html">
+                <img src="../images/logo.png" alt="No Wheat, No Worries Logo">
+            </a>
         </div>
         <button class="hamburger" aria-label="Toggle navigation">
             &#9776;
@@ -20,19 +22,39 @@
         
         <nav>
             <ul class="nav-links">
-                <button class="close-hamburger">&#9776;</button>
+                <button class="close-hamburger" aria-label="Close navigation">&#9776;</button>
                 <li><a href="../html/index.html">Home</a></li>
                 <li><a href="../html/recipe.html" class="active" style="color: black;">Recipes</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="../html/about.html">About</a></li>
                 <li><a href="../html/contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
-    <section id="blog-posts">
-    </section>
 
-    <button id="load-more" class="load-more">Load More Posts</button>
+    <main>
+        <div class="blog-page">
+            <div id="categories">
+                <h3>Categories</h3>
+                <ul>
+                    <li>All</li>
+                    <li>Category 1</li>
+                    <li>Category 2</li>
+                    <li>Category 3</li>
+                </ul>
+            </div>
+            <div id="blog-posts"></div>
+        </div>
 
+        <button id="load-more" class="load-more">Load More Posts</button>
+    </main>
 
+    <footer>
+        <p>&copy; 2024 No Wheat, No Worries. All rights reserved.</p>
+        <ul class="social-links">
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Pinterest</a></li>
+        </ul>
+    </footer>
 </body>
 </html>
