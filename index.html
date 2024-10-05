@@ -30,30 +30,50 @@
         </nav>
     </header>
     <main>
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Delicious Gluten-Free Recipes</h1>
-            <p>Discover amazing alternatives that taste just as good, if not better!</p>
-            <a href="html/recipe.html" class="cta-button">Explore Recipes</a>
-        </div>
-    </section>
-
-    <section class="latest-posts">
-        <h2>Latest Posts</h2>
-        <div class="carousel">
-            <div class="carousel-track-container">
-                <ul class="carousel-track"></ul>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Delicious Gluten-Free Recipes</h1>
+                <p>Discover amazing alternatives that taste just as good, if not better!</p>
+                <a href="html/recipe.html" class="cta-button">Explore Recipes</a>
             </div>
-            <button class="carousel-button carousel-button-left">←</button>
-            <button class="carousel-button carousel-button-right">→</button>
-        </div>
-    </section>
+        </section>
 
-    <section class="recipes">
-        <h3>Popular Recipes</h3>
-        <div class="recipe-cards"></div>
-    </section>
-</main>
+        <section class="latest-posts">
+            <h2>Latest Posts</h2>
+            <div class="carousel">
+                <div class="carousel-track-container">
+                    <ul class="carousel-track"></ul>
+                </div>
+                <button class="carousel-button carousel-button-left">←</button>
+                <button class="carousel-button carousel-button-right">→</button>
+            </div>
+        </section>
+        <section class="featured-recipes">
+            <h2>Featured Recipes</h2>
+            <div class="recipe-cards" id="recipe-cards-container">
+            </div>
+        </section>
+        <section class="testimonials">
+            <h2>What Our Readers Say</h2>
+            <blockquote>
+                <p>"I love the gluten-free recipes! They taste amazing and are easy to make!"</p>
+                <cite>- Happy Baker</cite>
+            </blockquote>
+            <blockquote>
+                <p>"No Wheat, No Worries has changed the way I think about gluten-free cooking."</p>
+                <cite>- Satisfied Customer</cite>
+            </blockquote>
+        </section>
+
+        <section class="newsletter-signup">
+            <h2>Join Our Community!</h2>
+            <p>Sign up for our newsletter to get the latest recipes and tips.</p>
+            <form action="your-form-handler.php" method="POST">
+                <input type="email" placeholder="Your Email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </section>
+    </main>
     <footer>
         <p>&copy; 2024 No Wheat, No Worries. All rights reserved.</p>
         <ul class="social-links">
@@ -62,5 +82,6 @@
             <li><a href="#">Pinterest</a></li>
         </ul>
     </footer>
+
 </body>
 </html>

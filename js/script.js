@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const track = document.querySelector('.carousel-track');
     const nextButton = document.querySelector('.carousel-button-right');
     const prevButton = document.querySelector('.carousel-button-left');
-    const recipeCardsContainer = document.querySelector('.recipe-cards');
+    const recipeCardsContainer = document.querySelector('.recipe-cards'); 
     let currentSlide = 0;
     let slideWidth;
 
@@ -39,20 +39,23 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    if (track && nextButton && prevButton) {
-        async function fetchData(url) {
-            const response = await fetch(url);
-            return response.json();
-        }
+    // Fetch data function
+    async function fetchData(url) {
+        const response = await fetch(url);
+        return response.json();
+    }
 
+    // Fetch featured image function
+    async function fetchFeaturedImage(imageId) {
+        if (!imageId) return 'default-image.jpg';
+        const image = await fetchData(`https://julnys.no/wp-json/wp/v2/media/${imageId}`);
+        return image.source_url;
+    }
+
+    // Carousel functionality
+    if (track && nextButton && prevButton) {
         async function fetchPosts() {
             return await fetchData('https://julnys.no/wp-json/wp/v2/posts');
-        }
-
-        async function fetchFeaturedImage(imageId) {
-            if (!imageId) return 'default-image.jpg';
-            const image = await fetchData(`https://julnys.no/wp-json/wp/v2/media/${imageId}`);
-            return image.source_url;
         }
 
         async function createSlide(post) {
@@ -119,5 +122,38 @@ document.addEventListener("DOMContentLoaded", function () {
         loadPosts();
     }
 
-});
+    async function fetchFeaturedRecipes() {
+        const response = await fetch('https://julnys.no/wp-json/wp/v2/posts'); 
+        const recipes = await response.json();
+        return recipes.slice(0, 3); 
+    }
 
+    async function loadFeaturedRecipes() {
+        const recipes = await fetchFeaturedRecipes();
+        recipeCardsContainer.innerHTML = ''; 
+
+        for (const recipe of recipes) {
+            const card = document.createElement('div');
+            card.classList.add('recipe-card');
+
+            const imgSrc = await fetchFeaturedImage(recipe.featured_media); 
+            const img = document.createElement('img');
+            img.src = imgSrc;
+            img.alt = recipe.title.rendered;
+
+            const title = document.createElement('h3');
+            title.textContent = recipe.title.rendered;
+
+            const link = document.createElement('a');
+            link.href = recipe.link;
+            link.textContent = 'View Recipe';
+
+            card.appendChild(img);
+            card.appendChild(title);
+            card.appendChild(link);
+            recipeCardsContainer.appendChild(card);
+        }
+    }
+
+    loadFeaturedRecipes();
+});

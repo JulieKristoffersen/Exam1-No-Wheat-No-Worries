@@ -51,7 +51,7 @@ header {
     gap: 50px;
     margin-right: auto;
     align-items: center;
-    color: white
+    color: white;
 }
 
 @media (max-width: 768px) {
@@ -110,6 +110,7 @@ header {
         color: #e5e5e5; 
     }
 }
+
 .nav-links .close-hamburger {
     display: none;
     font-size: 36px;
@@ -247,13 +248,13 @@ header {
 }
 
 .recipe-card {
-    background-color: #f1f1f1;
     border-radius: 10px;
     overflow: hidden;
     width: 350px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: left;
+    text-align: center;
     transition: transform 0.3s ease;
+    margin-bottom: 40px;
 }
 
 .recipe-card:hover {
@@ -267,14 +268,14 @@ header {
 }
 
 .recipe-card h3 {
-    font-size: 24px;
-    padding: 15px;
+    font-size: 20px;
+    padding: 10px;
 }
 
 .recipe-card p {
     padding: 0 15px;
     font-size: 18px;
-    color: #666;
+
 }
 
 .recipe-button {
@@ -291,6 +292,12 @@ header {
 .recipe-button:hover {
     background-color: #4a8b25;
 }
+
+.featured-recipes h2{
+    margin-bottom: 30px;
+    text-align: center;
+}
+
 
 footer {
     background-color: #333;
@@ -321,6 +328,48 @@ footer p {
     background-color: #555;
 }
 
+.testimonials {
+    background-color: #e9ecef;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.testimonials blockquote {
+    margin: 20px 0;
+    font-style: italic;
+    font-size: 18px;
+}
+
+.newsletter-signup {
+    background-color: #f0f8ff;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.newsletter-signup form {
+    display: inline-block;
+}
+
+.newsletter-signup input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.newsletter-signup button {
+    padding: 10px 20px;
+    background-color: #6c9d46;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.newsletter-signup button:hover {
+    background-color: #4a8b25;
+}
+
 @media (max-width: 768px) {
     .recipe-cards {
         flex-direction: column;
@@ -338,4 +387,3 @@ footer p {
         width: 95%;
     }
 }
-
