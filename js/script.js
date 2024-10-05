@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const track = document.querySelector('.carousel-track');
     const nextButton = document.querySelector('.carousel-button-right');
     const prevButton = document.querySelector('.carousel-button-left');
+    const recipeCardsContainer = document.querySelector('.recipe-cards');
     let currentSlide = 0;
     let slideWidth;
 
@@ -117,5 +118,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         loadPosts();
     }
+
 });
 
