@@ -39,20 +39,17 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Fetch data function
     async function fetchData(url) {
         const response = await fetch(url);
         return response.json();
     }
 
-    // Fetch featured image function
     async function fetchFeaturedImage(imageId) {
         if (!imageId) return 'default-image.jpg';
         const image = await fetchData(`https://julnys.no/wp-json/wp/v2/media/${imageId}`);
         return image.source_url;
     }
 
-    // Carousel functionality
     if (track && nextButton && prevButton) {
         async function fetchPosts() {
             return await fetchData('https://julnys.no/wp-json/wp/v2/posts');
