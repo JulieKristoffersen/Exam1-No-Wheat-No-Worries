@@ -1,6 +1,6 @@
 // js/script.js
 
-import { fetchData, fetchFeaturedImage } from '../js/fetch-posts';
+import { fetchData, fetchFeaturedImage } from './fetch-posts';
 
 document.addEventListener("DOMContentLoaded", () => {
     const elements = {
