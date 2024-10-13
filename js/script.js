@@ -1,3 +1,7 @@
+// js/script.js
+
+import { fetchData, fetchFeaturedImage } from './api/fetch-posts.js';
+
 document.addEventListener("DOMContentLoaded", () => {
     const elements = {
         hamburger: document.querySelector('.hamburger'),
@@ -33,23 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll('.nav-links a').forEach(item => {
             item.addEventListener('click', () => toggleMenu(false));
         });
-    };
-
-    // Utility: Fetch Data
-    const fetchData = async (url) => {
-        try {
-            const response = await fetch(url);
-            return response.json();
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    };
-
-    // Utility: Fetch Featured Image
-    const fetchFeaturedImage = async (imageId) => {
-        if (!imageId) return 'default-image.jpg';
-        const image = await fetchData(`https://julnys.no/wp-json/wp/v2/media/${imageId}`);
-        return image?.source_url || 'default-image.jpg';
     };
 
     // Utility: Create Slide
