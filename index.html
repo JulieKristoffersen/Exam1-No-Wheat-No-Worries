@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>No Wheat, No Worries</title>
     <link rel="stylesheet" href="css/styles.css">
-    <script src="js/script.js" defer type="module"></script>
+    <script src="./js/script.js"></script>
 </head>
 <body>
     <header>
@@ -37,21 +37,20 @@
                 <a href="recipe.html" class="cta-button">Explore Recipes</a>
             </div>
         </section>
-
         <section class="latest-posts">
             <h2>Latest Posts</h2>
             <div class="carousel">
                 <div class="carousel-track-container">
                     <ul class="carousel-track"></ul>
                 </div>
-                <button class="carousel-button carousel-button-left">←</button>
-                <button class="carousel-button carousel-button-right">→</button>
+                <button class="carousel-button carousel-button-left" aria-label="Previous slide">←</button>
+                <button class="carousel-button carousel-button-right" aria-label="Next slide">→</button>
+
             </div>
         </section>
         <section class="featured-recipes">
             <h2>Featured Recipes</h2>
-            <div class="recipe-cards" id="recipe-cards-container">
-            </div>
+            <div class="recipe-cards" id="recipe-cards-container"></div>
         </section>
         <section class="testimonials">
             <h2>What Our Readers Say</h2>
@@ -64,7 +63,6 @@
                 <cite>- Satisfied Customer</cite>
             </blockquote>
         </section>
-
 
         <section class="newsletter-signup">
             <h2>Join Our Community!</h2>
@@ -83,6 +81,5 @@
             <li><a href="#">Pinterest</a></li>
         </ul>
     </footer>
-
 </body>
 </html>
