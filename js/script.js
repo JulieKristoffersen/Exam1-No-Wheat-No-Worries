@@ -1,8 +1,7 @@
-// js/script.js
 import { fetchData } from './api/fetch-posts.js';
 import { setupHamburgerMenu } from './ui/hamburger-menu.js';
 import { loadCarouselPosts, setupCarouselNavigation } from './ui/carousel.js';
-import { loadFeaturedRecipes } from './ui/featured-recipes.js'; // Import the new module
+import { loadFeaturedRecipes } from './ui/featured-recipes.js'; 
 
 document.addEventListener("DOMContentLoaded", () => {
     const elements = {
@@ -18,5 +17,5 @@ document.addEventListener("DOMContentLoaded", () => {
     setupHamburgerMenu(elements);
     loadCarouselPosts(elements);
     setupCarouselNavigation(elements);
-    loadFeaturedRecipes(elements); // Call to load featured recipes
+    loadFeaturedRecipes(elements); 
 });

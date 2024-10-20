@@ -1,5 +1,3 @@
-// js/ui/hamburger-menu.js
-
 export const setupHamburgerMenu = (elements) => {
     const toggleMenu = (isOpen) => {
         elements.navLinks.classList.toggle('active', isOpen);

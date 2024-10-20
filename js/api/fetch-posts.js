@@ -1,6 +1,3 @@
-// js/api/fetch-posts.js
-
-// Utility: Fetch Data
 export const fetchData = async (url) => {
     try {
         const response = await fetch(url);
@@ -10,14 +7,12 @@ export const fetchData = async (url) => {
     }
 };
 
-// Utility: Fetch Featured Image
 export const fetchFeaturedImage = async (imageId) => {
     if (!imageId) return 'default-image.jpg';
     const image = await fetchData(`https://julnys.no/wp-json/wp/v2/media/${imageId}`);
     return image?.source_url || 'default-image.jpg';
 };
 
-// Utility: Create Slide
 export const createSlide = async (post) => {
     const slide = document.createElement('li');
     slide.classList.add('carousel-slide');
