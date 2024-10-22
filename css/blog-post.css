@@ -1,4 +1,6 @@
-/* General Styles */
+* {
+    box-sizing: border-box;
+}
 .article-wrapper {
     margin: 40px auto;
     max-width: 800px;

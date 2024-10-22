@@ -19,19 +19,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     async function fetchBlogById(id) {
-        const url = `https://julnys.no/wp-json/wp/v2/posts/${id}`; 
+        const url = `https://julnys.no/wp-json/wp/v2/posts/${id}?_embed=true`; // Embed media
         return await fetchData(url);
     }
 
     const blogPost = await fetchBlogById(blogId);
-    
+
     // If the post exists, update the page content dynamically
     if (blogPost) {
         blogTitle.innerText = `My Blog | ${blogPost.title.rendered}`;
+        
+        // Extract featured image URL from embedded data
+        const featuredImage = blogPost._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'default-image.jpg';
+
         blogContent.innerHTML = `
             <h1>${blogPost.title.rendered}</h1>
             <div>${blogPost.content.rendered}</div>
-            <img src="${blogPost.featured_image || 'default-image.jpg'}" alt="${blogPost.title.rendered}" class="post-image" />
+            <img src="${featuredImage}" alt="${blogPost.title.rendered}" class="post-image" />
         `;
         
         // Image modal functionality
@@ -60,6 +64,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         blogContent.innerHTML = '<p>Post not found.</p>';
     }
 
-    // Initialize Hamburger Menu
-    setupHamburgerMenu();
+    // Pass the required elements for the hamburger menu
+    const elements = {
+        hamburger: document.querySelector('.hamburger'),
+        navLinks: document.querySelector('.nav-links'),
+        closeHamburger: document.querySelector('.close-hamburger'),
+    };
+
+    setupHamburgerMenu(elements); // Initialize hamburger menu with the elements
 });
