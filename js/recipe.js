@@ -1,6 +1,6 @@
 import { setupHamburgerMenu } from './ui/hamburger-menu.js';
 import { fetchBlogs, fetchCategories } from './api/fetch-category.js';
-import { renderBlogPost } from './ui/render-blog-post.js';
+import { renderBlogPost } from './ui/render-ui.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const elements = {
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         closeHamburger: document.querySelector('.close-hamburger')
     };
 
-    setupHamburgerMenu(elements);
+ setupHamburgerMenu(elements);
 
     const blogPostsContainer = document.getElementById('blog-posts');
     const loadMoreButton = document.getElementById('load-more');

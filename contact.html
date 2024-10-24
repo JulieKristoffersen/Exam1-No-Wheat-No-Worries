@@ -1,67 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Contact Us - No Wheat, No Worries</title>
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/contact.css" />
-    <script defer src="js/script.js"></script>
-    <script defer src="js/contact.js"></script>
-  </head>
-  <body>
+    <script type="module" src="js/script.js"></script>
+</head>
+<body>
     <header>
-      <div class="logo">
-        <a href="index.html">
-          <img src="images/logo.png" alt="No Wheat, No Worries Logo" />
-        </a>
-      </div>
-      <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/logo.png" alt="No Wheat, No Worries Logo" />
+            </a>
+        </div>
+        <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
 
-      <nav>
-        <ul class="nav-links">
-          <button class="close-hamburger">&#9776;</button>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="recipe.html">Recipes</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html" class="active" style="color: black" >Contact</a>
-          </li>
-        </ul>
-      </nav>
+        <nav>
+            <ul class="nav-links">
+                <button class="close-hamburger">&#9776;</button>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="recipe.html">Recipes</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" class="active" style="color: black">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
-      <section class="contact-form">
-        <h2>Contact Us</h2>
-        <form id="contactForm">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required />
-          <span id="nameError" class="error"></span>
+        <section class="contact-form">
+            <h2>Contact Us</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required autocomplete="name" />
+                    <span id="nameError" class="error"></span>
+                </div>
 
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required />
-          <span id="emailError" class="error"></span>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required autocomplete="email" />
+                    <span id="emailError" class="error"></span>
+                </div>
 
-          <label for="subject">Subject</label>
-          <input type="text" id="subject" name="subject" required />
-          <span id="subjectError" class="error"></span>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required autocomplete="subject" />
+                    <span id="subjectError" class="error"></span>
+                </div>
 
-          <label for="message">Message</label>
-          <textarea id="message" name="message" required></textarea>
-          <span id="messageError" class="error"></span>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required autocomplete="message"></textarea>
+                    <span id="messageError" class="error"></span>
+                </div>
 
-          <button type="submit">Submit</button>
-        </form>
-      </section>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
     </main>
+
     <footer>
-      <p>&copy; 2024 No Wheat, No Worries. All rights reserved.</p>
-      <ul class="social-links">
-        <li><a href="#">Facebook</a></li>
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">Pinterest</a></li>
-      </ul>
+        <p>&copy; 2024 No Wheat, No Worries. All rights reserved.</p>
+        <ul class="social-links">
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Pinterest</a></li>
+        </ul>
     </footer>
-  </body>
+</body>
 </html>
