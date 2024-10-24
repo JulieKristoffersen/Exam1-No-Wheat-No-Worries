@@ -370,6 +370,23 @@ footer p {
     background-color: #4a8b25;
 }
 
+.error-message {
+    color: red;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.loading-indicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5em;
+    color: #333; /* Change to match your theme */
+    z-index: 1000; /* Ensure it's on top of other elements */
+}
+
+
 @media (max-width: 768px) {
     .recipe-cards {
         flex-direction: column;

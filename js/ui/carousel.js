@@ -1,8 +1,8 @@
-// js/ui/carousel.js
-import { fetchData, createSlide } from '../api/fetch-posts.js';
+import { fetchData } from '../api/fetch-posts.js';
 
 let currentSlide = 0;
 let slideWidth;
+const slidesPerPage = 3;
 
 export const loadCarouselPosts = async (elements) => {
     if (!elements.track || !elements.nextButton || !elements.prevButton) return;
@@ -24,6 +24,28 @@ export const loadCarouselPosts = async (elements) => {
     });
 };
 
+const createSlide = async (post) => {
+    const slide = document.createElement('li');
+    slide.classList.add('carousel-slide');
+
+    const imgSrc = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'default-image.jpg';
+    
+    const img = document.createElement('img');
+    img.src = imgSrc;
+    img.alt = post.title.rendered;
+    img.style.cssText = 'width:100%; height:150px; object-fit:cover;';
+
+    const h3 = document.createElement('h3');
+    h3.textContent = post.title.rendered;
+
+    const link = document.createElement('a');
+    link.href = post.link;
+    link.textContent = 'Read More';
+
+    slide.append(img, h3, link);
+    return slide;
+};
+
 export const setupCarouselNavigation = (elements) => {
     elements.nextButton.addEventListener('click', () => {
         const slides = Array.from(elements.track.children);
@@ -40,3 +62,4 @@ const moveToSlide = (targetSlide) => {
     const track = document.querySelector('.carousel-track');
     track.style.transform = `translateX(-${slideWidth * currentSlide}px)`;
 };
+

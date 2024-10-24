@@ -1,16 +1,16 @@
-// js/ui/featured-recipes.js
-import { fetchData, fetchFeaturedImage } from '../api/fetch-posts.js';
+import { fetchData } from '../api/fetch-posts.js';
 
 export const loadFeaturedRecipes = async (elements) => {
-    const recipes = await fetchData('https://julnys.no/wp-json/wp/v2/posts') || [];
-    const featuredRecipes = recipes.slice(0, 3); // Fetch top 3 recipes
+    const recipes = await fetchData('https://julnys.no/wp-json/wp/v2/posts?_embed=true') || [];
+    const featuredRecipes = recipes.slice(5, 8); 
 
-    elements.recipeCardsContainer.innerHTML = ''; // Clear existing content
+    elements.recipeCardsContainer.innerHTML = ''; 
+
     for (const recipe of featuredRecipes) {
         const card = document.createElement('div');
         card.classList.add('recipe-card');
 
-        const imgSrc = await fetchFeaturedImage(recipe.featured_media);
+        const imgSrc = recipe._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'default-image.jpg';
         const img = document.createElement('img');
         img.src = imgSrc;
         img.alt = recipe.title.rendered;
@@ -19,7 +19,7 @@ export const loadFeaturedRecipes = async (elements) => {
         title.textContent = recipe.title.rendered;
 
         const link = document.createElement('a');
-        link.href = recipe.link;
+        link.href = `blog-post.html?id=${recipe.id}`;
         link.textContent = 'View Recipe';
 
         card.append(img, title, link);
