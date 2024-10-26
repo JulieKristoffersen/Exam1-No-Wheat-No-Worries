@@ -29,7 +29,11 @@ const createSlide = async (post) => {
     slide.classList.add('carousel-slide');
 
     const imgSrc = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'default-image.jpg';
-    
+
+    const link = document.createElement('a');
+    link.href = `blog-post.html?id=${post.id}`;  
+    link.style.textDecoration = 'none'; 
+
     const img = document.createElement('img');
     img.src = imgSrc;
     img.alt = post.title.rendered;
@@ -38,13 +42,13 @@ const createSlide = async (post) => {
     const h3 = document.createElement('h3');
     h3.textContent = post.title.rendered;
 
-    const link = document.createElement('a');
-    link.href = post.link;
-    link.textContent = 'Read More';
+    link.appendChild(img);
+    link.appendChild(h3);
 
-    slide.append(img, h3, link);
+    slide.appendChild(link);
     return slide;
 };
+
 
 export const setupCarouselNavigation = (elements) => {
     elements.nextButton.addEventListener('click', () => {
@@ -62,4 +66,3 @@ const moveToSlide = (targetSlide) => {
     const track = document.querySelector('.carousel-track');
     track.style.transform = `translateX(-${slideWidth * currentSlide}px)`;
 };
-

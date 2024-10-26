@@ -4,32 +4,22 @@ export const renderBlogPost = (post, container) => {
     const blogPost = document.createElement('div');
     blogPost.classList.add('blog-post');
 
+    const link = document.createElement('a');
+    link.href = `blog-post.html?id=${post.id}`; 
+    link.target = "_self"; 
+
     blogPost.innerHTML = `
-        <img src="${featuredImage}" alt="${post.title.rendered}" class="post-image" style="width:100%; height:auto;">
         <h2>${post.title.rendered}</h2>
         <p>${post.excerpt.rendered}</p>
-        <a href="blog-post.html?id=${post.id}" target="_self">Read More</a>
     `;
+    const img = document.createElement('img');
+    img.src = featuredImage;
+    img.alt = post.title.rendered;
+    img.classList.add('post-image'); 
+    img.style.cssText = 'width:100%; height:auto;';
+
+    link.appendChild(img);
+    blogPost.prepend(link); 
 
     container.appendChild(blogPost);
-};
-
-export const renderCategories = (categories, container, resetBlogPosts) => {
-    container.innerHTML = '';
-
-    const allCategoriesItem = document.createElement('li');
-    allCategoriesItem.textContent = 'All Categories';
-    allCategoriesItem.addEventListener('click', () => {
-        resetBlogPosts();
-    });
-    container.appendChild(allCategoriesItem);
-
-    categories.forEach(category => {
-        const categoryItem = document.createElement('li');
-        categoryItem.textContent = category.name;
-        categoryItem.addEventListener('click', () => {
-            resetBlogPosts(category.id);
-        });
-        container.appendChild(categoryItem);
-    });
 };
