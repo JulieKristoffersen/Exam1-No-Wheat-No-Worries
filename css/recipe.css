@@ -85,6 +85,11 @@
     background-color: #4a8b25;
 }
 
+.load-more.disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}
+
 @media (max-width: 768px) {
     .blog-page {
         flex-direction: column; 

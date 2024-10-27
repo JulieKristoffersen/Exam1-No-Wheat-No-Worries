@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         closeHamburger: document.querySelector('.close-hamburger')
     };
 
- setupHamburgerMenu(elements);
+    setupHamburgerMenu(elements);
 
     const blogPostsContainer = document.getElementById('blog-posts');
     const loadMoreButton = document.getElementById('load-more');
@@ -17,10 +17,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const postsPerPage = 10;
     let currentPage = 1;
     let selectedCategory = '';
+    let allPostsLoaded = false;
 
     async function loadBlogs() {
+        // Only attempt to load more posts if there are still posts to load
+        if (allPostsLoaded) return;
+
         const blogs = await fetchBlogs(currentPage, postsPerPage, selectedCategory);
-        blogs.forEach(post => renderBlogPost(post, blogPostsContainer));
+
+        if (blogs.length === 0) {
+            // If no blogs are returned, all posts have been loaded
+            allPostsLoaded = true;
+            loadMoreButton.textContent = "No more posts available";
+            loadMoreButton.disabled = true;
+            loadMoreButton.classList.add('disabled'); // Optional: style to show it's inactive
+        } else {
+            blogs.forEach(post => renderBlogPost(post, blogPostsContainer));
+        }
     }
 
     async function loadCategories() {
@@ -53,6 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function resetBlogPosts() {
         blogPostsContainer.innerHTML = '';
         currentPage = 1;
+        allPostsLoaded = false; // Reset to allow more posts to load after filtering
+        loadMoreButton.textContent = "Load More Posts";
+        loadMoreButton.disabled = false;
+        loadMoreButton.classList.remove('disabled');
         loadBlogs();
     }
 
