@@ -1,10 +1,15 @@
 .contact-form {
     max-width: 500px;
-    margin: 0 auto;
+    margin: 30px auto;
     padding: 20px;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form h2 {
+    margin-bottom: 20px; 
+    text-align: center; 
 }
 
 .form-group {
@@ -50,4 +55,22 @@ button:hover {
     font-size: 0.9rem;
     margin-top: 5px;
     display: block;
+}
+
+@media (max-width: 600px) {
+    .contact-form {
+        padding: 15px; 
+        margin: 20px auto; 
+        width: 80%; 
+    }
+
+
+    input[type="text"], input[type="email"], textarea {
+        padding: 5px; 
+    }
+
+    button {
+        padding: 12px; 
+        font-size: 1rem; 
+    }
 }
