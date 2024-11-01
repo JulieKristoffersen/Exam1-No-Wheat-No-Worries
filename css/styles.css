@@ -61,7 +61,7 @@ header {
     gap: 50px;
     margin-right: auto;
     align-items: center;
-    color: #FFF8E1;
+    color: white;
 }
 
 @media (max-width: 768px) {
