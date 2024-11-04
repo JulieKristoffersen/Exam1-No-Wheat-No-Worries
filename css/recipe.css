@@ -1,3 +1,10 @@
+h1 {
+    margin: 1em 0; 
+    font-size: 2em; 
+    color: #4f4f4f;
+    text-align: center; 
+}
+
 .blog-page {
   display: flex;
   max-width: 1000px;
