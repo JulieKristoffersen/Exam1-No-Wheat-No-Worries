@@ -77,10 +77,13 @@
         <section class="newsletter-signup">
             <h2>Join Our Community!</h2>
             <p>Sign up for our newsletter to get the latest recipes and tips.</p>
-            <form action="your-form-handler.php" method="POST">
-                <input type="email" placeholder="Your Email" required>
+            <form id="newsletter-form" method="POST">
+                <input type="email" id="email" placeholder="Your Email" required>
                 <button type="submit">Subscribe</button>
             </form>
+            <div id="confirmation-message" style="display: none; color: green; margin-top: 10px;">
+                Thank you for subscribing!
+            </div>
         </section>
     </main>
     <footer>

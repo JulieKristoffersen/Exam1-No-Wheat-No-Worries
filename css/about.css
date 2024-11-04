@@ -1,6 +1,6 @@
 .hero {
     background: url('../images/background.png') no-repeat center center/cover;
-    color: white;
+    color: #4f4f4f;
     padding: 5rem 2rem;
     text-align: center;
 }
