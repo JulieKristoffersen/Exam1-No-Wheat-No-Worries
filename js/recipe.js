@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let allPostsLoaded = false;
 
     async function loadBlogs() {
-        // Only attempt to load more posts if there are still posts to load
         if (allPostsLoaded) return;
 
         const blogs = await fetchBlogs(currentPage, postsPerPage, selectedCategory);
