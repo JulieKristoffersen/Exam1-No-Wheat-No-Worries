@@ -27,7 +27,6 @@ function setupFormValidation() {
         event.preventDefault();
         let isValid = true;
 
-        // Name validation
         if (nameInput.value.trim().length <= 5) {
             nameError.textContent = "Name must be more than 5 characters long.";
             isValid = false;
@@ -35,7 +34,6 @@ function setupFormValidation() {
             nameError.textContent = "";
         }
 
-        // Email validation
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(emailInput.value.trim())) {
             emailError.textContent = "Please enter a valid email address.";
@@ -44,7 +42,6 @@ function setupFormValidation() {
             emailError.textContent = "";
         }
 
-        // Subject validation
         if (subjectInput.value.trim().length <= 15) {
             subjectError.textContent = "Subject must be more than 15 characters long.";
             isValid = false;

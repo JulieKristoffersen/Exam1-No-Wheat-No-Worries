@@ -25,11 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const blogs = await fetchBlogs(currentPage, postsPerPage, selectedCategory);
 
         if (blogs.length === 0) {
-            // If no blogs are returned, all posts have been loaded
             allPostsLoaded = true;
             loadMoreButton.textContent = "No more posts available";
             loadMoreButton.disabled = true;
-            loadMoreButton.classList.add('disabled'); // Optional: style to show it's inactive
+            loadMoreButton.classList.add('disabled'); 
         } else {
             blogs.forEach(post => renderBlogPost(post, blogPostsContainer));
         }
@@ -65,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function resetBlogPosts() {
         blogPostsContainer.innerHTML = '';
         currentPage = 1;
-        allPostsLoaded = false; // Reset to allow more posts to load after filtering
+        allPostsLoaded = false; 
         loadMoreButton.textContent = "Load More Posts";
         loadMoreButton.disabled = false;
         loadMoreButton.classList.remove('disabled');

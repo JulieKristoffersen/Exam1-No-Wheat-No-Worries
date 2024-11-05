@@ -7,7 +7,6 @@ let visibleSlidesCount = 1;
 export const loadCarouselPosts = async (elements) => {
     if (!elements.track || !elements.nextButton || !elements.prevButton) return;
 
-    // Fetch only the 10 latest posts
     const posts = await fetchData('https://julnys.no/wp-json/wp/v2/posts?_embed&per_page=10');
     if (!posts) return;
 
