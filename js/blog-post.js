@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const blogPost = await fetchBlogById(blogId);
 
     if (blogPost) {
-        blogTitle.innerText = `My Blog | ${blogPost.title.rendered}`;
+        blogTitle.innerText = `No wheat, No worries | ${blogPost.title.rendered}`;
 
         const featuredImage = blogPost._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'default-image.jpg';
 
