@@ -9,20 +9,17 @@ showLoadingIndicator();
 
 window.addEventListener("load", hideLoadingIndicator);
 
+const elements = {
+    hamburger: document.querySelector('.hamburger'),
+    navLinks: document.querySelector('.nav-links'),
+    closeHamburger: document.querySelector('.close-hamburger'),
+    track: document.querySelector('.carousel-track'),
+    nextButton: document.querySelector('.carousel-button-right'),
+    prevButton: document.querySelector('.carousel-button-left'),
+    recipeCardsContainer: document.querySelector('.recipe-cards'),
+};
 
-document.addEventListener("DOMContentLoaded", () => {
-    const elements = {
-        hamburger: document.querySelector('.hamburger'),
-        navLinks: document.querySelector('.nav-links'),
-        closeHamburger: document.querySelector('.close-hamburger'),
-        track: document.querySelector('.carousel-track'),
-        nextButton: document.querySelector('.carousel-button-right'),
-        prevButton: document.querySelector('.carousel-button-left'),
-        recipeCardsContainer: document.querySelector('.recipe-cards'),
-    };
-
-    setupHamburgerMenu(elements);
-    loadCarouselPosts(elements);
-    setupCarouselNavigation(elements);
-    loadFeaturedRecipes(elements); 
-});
+setupHamburgerMenu(elements);
+loadCarouselPosts(elements);
+setupCarouselNavigation(elements);
+loadFeaturedRecipes(elements);

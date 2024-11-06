@@ -5,7 +5,7 @@ showLoadingIndicator();
 
 window.addEventListener("load", hideLoadingIndicator);
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('load', () => {
     const elements = {
         hamburger: document.querySelector('.hamburger'),
         navLinks: document.querySelector('.nav-links'),

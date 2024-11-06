@@ -5,29 +5,29 @@ showLoadingIndicator();
 
 window.addEventListener("load", hideLoadingIndicator);
 
-document.addEventListener('DOMContentLoaded', () => {
-    setupFormValidation();
+const formElements = {
+    form: document.getElementById('contactForm'),
+    nameInput: document.getElementById('name'),
+    emailInput: document.getElementById('email'),
+    subjectInput: document.getElementById('subject'),
+    messageInput: document.getElementById('message'),
+    nameError: document.getElementById('nameError'),
+    emailError: document.getElementById('emailError'),
+    subjectError: document.getElementById('subjectError'),
+    messageError: document.getElementById('messageError'),
+};
 
-    const elements = {
-        hamburger: document.querySelector('.hamburger'),
-        navLinks: document.querySelector('.nav-links'),
-        closeHamburger: document.querySelector('.close-hamburger')
-    };
-    setupHamburgerMenu(elements);
-});
+const hamburgerElements = {
+    hamburger: document.querySelector('.hamburger'),
+    navLinks: document.querySelector('.nav-links'),
+    closeHamburger: document.querySelector('.close-hamburger'),
+};
 
-function setupFormValidation() {
-    const form = document.getElementById('contactForm');
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const subjectInput = document.getElementById('subject');
-    const messageInput = document.getElementById('message');
+setupHamburgerMenu(hamburgerElements);
 
-    const nameError = document.getElementById('nameError');
-    const emailError = document.getElementById('emailError');
-    const subjectError = document.getElementById('subjectError');
-    const messageError = document.getElementById('messageError');
+setupFormValidation(formElements);
 
+function setupFormValidation({ form, nameInput, emailInput, subjectInput, messageInput, nameError, emailError, subjectError, messageError }) {
     form.addEventListener('submit', (event) => {
         event.preventDefault();
         let isValid = true;

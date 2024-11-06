@@ -7,80 +7,78 @@ showLoadingIndicator();
 
 window.addEventListener("load", hideLoadingIndicator);
 
-document.addEventListener('DOMContentLoaded', () => {
-    const elements = {
-        hamburger: document.querySelector('.hamburger'),
-        navLinks: document.querySelector('.nav-links'),
-        closeHamburger: document.querySelector('.close-hamburger')
-    };
+const elements = {
+    hamburger: document.querySelector('.hamburger'),
+    navLinks: document.querySelector('.nav-links'),
+    closeHamburger: document.querySelector('.close-hamburger'),
+    blogPostsContainer: document.getElementById('blog-posts'),
+    loadMoreButton: document.getElementById('load-more'),
+    categoriesContainer: document.getElementById('categories')
+};
 
-    setupHamburgerMenu(elements);
+setupHamburgerMenu(elements);
 
-    const blogPostsContainer = document.getElementById('blog-posts');
-    const loadMoreButton = document.getElementById('load-more');
-    const categoriesContainer = document.getElementById('categories');
-    const postsPerPage = 10;
-    let currentPage = 1;
-    let selectedCategory = '';
-    let allPostsLoaded = false;
+const postsPerPage = 10;
+let currentPage = 1;
+let selectedCategory = '';
+let allPostsLoaded = false;
 
-    async function loadBlogs() {
-        if (allPostsLoaded) return;
+async function loadBlogs() {
+    if (allPostsLoaded) return;
 
-        const blogs = await fetchBlogs(currentPage, postsPerPage, selectedCategory);
+    const blogs = await fetchBlogs(currentPage, postsPerPage, selectedCategory);
 
-        if (blogs.length === 0) {
-            allPostsLoaded = true;
-            loadMoreButton.textContent = "No more posts available";
-            loadMoreButton.disabled = true;
-            loadMoreButton.classList.add('disabled'); 
-        } else {
-            blogs.forEach(post => renderBlogPost(post, blogPostsContainer));
-        }
+    if (blogs.length === 0) {
+        allPostsLoaded = true;
+        elements.loadMoreButton.textContent = "No more posts available";
+        elements.loadMoreButton.disabled = true;
+        elements.loadMoreButton.classList.add('disabled');
+    } else {
+        blogs.forEach(post => renderBlogPost(post, elements.blogPostsContainer));
     }
+}
 
-    async function loadCategories() {
-        const categories = await fetchCategories();
-        renderCategories(categories);
-    }
+async function loadCategories() {
+    const categories = await fetchCategories();
+    renderCategories(categories);
+}
 
-    function renderCategories(categories) {
-        categoriesContainer.innerHTML = '';
+function renderCategories(categories) {
+    elements.categoriesContainer.innerHTML = '';
 
-        const allCategoriesItem = document.createElement('li');
-        allCategoriesItem.textContent = 'All Categories';
-        allCategoriesItem.addEventListener('click', () => {
-            selectedCategory = '';
+    const allCategoriesItem = document.createElement('li');
+    allCategoriesItem.textContent = 'All Categories';
+    allCategoriesItem.addEventListener('click', () => {
+        selectedCategory = '';
+        resetBlogPosts();
+    });
+    elements.categoriesContainer.appendChild(allCategoriesItem);
+
+    categories.forEach(category => {
+        const categoryItem = document.createElement('li');
+        categoryItem.textContent = category.name;
+        categoryItem.addEventListener('click', () => {
+            selectedCategory = category.id;
             resetBlogPosts();
         });
-        categoriesContainer.appendChild(allCategoriesItem);
-
-        categories.forEach(category => {
-            const categoryItem = document.createElement('li');
-            categoryItem.textContent = category.name;
-            categoryItem.addEventListener('click', () => {
-                selectedCategory = category.id;
-                resetBlogPosts();
-            });
-            categoriesContainer.appendChild(categoryItem);
-        });
-    }
-
-    function resetBlogPosts() {
-        blogPostsContainer.innerHTML = '';
-        currentPage = 1;
-        allPostsLoaded = false; 
-        loadMoreButton.textContent = "Load More Posts";
-        loadMoreButton.disabled = false;
-        loadMoreButton.classList.remove('disabled');
-        loadBlogs();
-    }
-
-    loadMoreButton?.addEventListener('click', async () => {
-        currentPage++;
-        await loadBlogs();
+        elements.categoriesContainer.appendChild(categoryItem);
     });
+}
 
+function resetBlogPosts() {
+    elements.blogPostsContainer.innerHTML = '';
+    currentPage = 1;
+    allPostsLoaded = false;
+    elements.loadMoreButton.textContent = "Load More Posts";
+    elements.loadMoreButton.disabled = false;
+    elements.loadMoreButton.classList.remove('disabled');
     loadBlogs();
-    loadCategories();
+}
+
+elements.loadMoreButton?.addEventListener('click', async () => {
+    currentPage++;
+    await loadBlogs();
 });
+
+loadBlogs();
+loadCategories();
