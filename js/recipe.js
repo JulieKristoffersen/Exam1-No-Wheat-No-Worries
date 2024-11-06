@@ -1,6 +1,11 @@
 import { setupHamburgerMenu } from './ui/hamburger-menu.js';
 import { fetchBlogs, fetchCategories } from './api/fetch-category.js';
 import { renderBlogPost } from './ui/render-ui.js';
+import { showLoadingIndicator, hideLoadingIndicator } from './ui/loading-indicator.js';
+
+showLoadingIndicator();
+
+window.addEventListener("load", hideLoadingIndicator);
 
 document.addEventListener('DOMContentLoaded', () => {
     const elements = {

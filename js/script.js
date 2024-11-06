@@ -3,6 +3,12 @@ import { setupHamburgerMenu } from './ui/hamburger-menu.js';
 import { loadCarouselPosts, setupCarouselNavigation } from './ui/carousel.js';
 import { loadFeaturedRecipes } from './ui/featured-recipes.js'; 
 import './ui/newsletter.js';
+import { showLoadingIndicator, hideLoadingIndicator } from './ui/loading-indicator.js';
+
+showLoadingIndicator();
+
+window.addEventListener("load", hideLoadingIndicator);
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const elements = {

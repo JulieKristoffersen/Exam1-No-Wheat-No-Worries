@@ -1,6 +1,11 @@
 import { setupHamburgerMenu } from './ui/hamburger-menu.js';
 import { fetchBlogById } from './api/fetch-posts.js';
 import { setupModal } from './ui/modal.js';
+import { showLoadingIndicator, hideLoadingIndicator } from './ui/loading-indicator.js';
+
+showLoadingIndicator();
+
+window.addEventListener("load", hideLoadingIndicator);
 
 document.addEventListener('DOMContentLoaded', async () => {
     const blogContent = document.getElementById('blog-content');
