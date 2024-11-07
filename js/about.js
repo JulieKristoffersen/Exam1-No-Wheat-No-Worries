@@ -3,18 +3,13 @@ import { showLoadingIndicator, hideLoadingIndicator } from './ui/loading-indicat
 
 showLoadingIndicator();
 
-window.addEventListener("load", () => {
-    hideLoadingIndicator();
+window.addEventListener("load", hideLoadingIndicator);
 
-    const hamburgerElements = {
+document.addEventListener('DOMContentLoaded', () => {
+    const elements = {
         hamburger: document.querySelector('.hamburger'),
         navLinks: document.querySelector('.nav-links'),
-        closeHamburger: document.querySelector('.close-hamburger')
     };
 
-    if (hamburgerElements.hamburger && hamburgerElements.navLinks && hamburgerElements.closeHamburger) {
-        setupHamburgerMenu(hamburgerElements);
-    } else {
-        console.error("One or more required elements are missing.");
-    }
+    setupHamburgerMenu(elements); 
 });
