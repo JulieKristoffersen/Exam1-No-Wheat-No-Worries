@@ -27,41 +27,56 @@ setupHamburgerMenu(hamburgerElements);
 
 setupFormValidation(formElements);
 
+const showError = (errorElement, message) => {
+    errorElement.textContent = message;
+};
+
+const clearError = (errorElement) => {
+    errorElement.textContent = "";
+};
+
 function setupFormValidation({ form, nameInput, emailInput, subjectInput, messageInput, nameError, emailError, subjectError, messageError }) {
-    form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', async (event) => {
         event.preventDefault();
         let isValid = true;
 
         if (nameInput.value.trim().length <= 5) {
-            nameError.textContent = "Name must be more than 5 characters long.";
+            showError(nameError, "Name must be more than 5 characters long.");
             isValid = false;
         } else {
-            nameError.textContent = "";
+            clearError(nameError);
         }
 
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(emailInput.value.trim())) {
-            emailError.textContent = "Please enter a valid email address.";
+            showError(emailError, "Please enter a valid email address.");
             isValid = false;
         } else {
-            emailError.textContent = "";
+            clearError(emailError);
         }
 
         if (subjectInput.value.trim().length <= 15) {
-            subjectError.textContent = "Subject must be more than 15 characters long.";
+            showError(subjectError, "Subject must be more than 15 characters long.");
             isValid = false;
         } else {
-            subjectError.textContent = "";
+            clearError(subjectError);
         }
 
         if (messageInput.value.trim().length <= 25) {
-            messageError.textContent = "Message must be more than 25 characters long.";
+            showError(messageError, "Message must be more than 25 characters long.");
             isValid = false;
         } else {
-            messageError.textContent = "";
+            clearError(messageError);
         }
 
         if (isValid) {
+            const formData = {
+                name: nameInput.value.trim(),
+                email: emailInput.value.trim(),
+                subject: subjectInput.value.trim(),
+                message: messageInput.value.trim(),
+            };
+
             alert("Form submitted successfully!");
             form.reset();
         }
