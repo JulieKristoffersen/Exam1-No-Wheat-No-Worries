@@ -6,14 +6,22 @@ export async function fetchBlogs(page = 1, limit = 10, category = '') {
         url += `&categories=${category}`;
     }
 
-    const response = await fetch(url);
-    if (!response.ok) {
-        console.error('Failed to fetch posts', response.status);
-        return [];
-    }
+    try {
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+            console.error('Failed to fetch posts', response.status);
+            return [];
+        }
 
-    return await response.json();
+        return await response.json();
+    } catch (error) {
+        alert(`Sorry, we are unable to fetch the blogs due to: ${error.message}`);
+        return [];  
+    }
 }
+
+
 
 export async function fetchCategories() {
     const baseUrl = 'https://julnys.no/wp-json/wp/v2';

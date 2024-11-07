@@ -1,4 +1,3 @@
-import { fetchData } from './api/fetch-posts.js';
 import { setupHamburgerMenu } from './ui/hamburger-menu.js';
 import { loadCarouselPosts, setupCarouselNavigation } from './ui/carousel.js';
 import { loadFeaturedRecipes } from './ui/featured-recipes.js'; 
