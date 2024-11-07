@@ -1,3 +1,5 @@
+@import url('styles.css');
+
 .hero {
     background: url('../images/background.png') no-repeat center center/cover;
     color: #4f4f4f;
