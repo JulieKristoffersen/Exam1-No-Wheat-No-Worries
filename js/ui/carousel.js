@@ -7,19 +7,28 @@ let visibleSlidesCount = 1;
 export const loadCarouselPosts = async (elements) => {
     if (!elements.track || !elements.nextButton || !elements.prevButton) return;
 
-    const posts = await fetchData('https://julnys.no/wp-json/wp/v2/posts?_embed&per_page=10');
-    if (!posts) return;
+    try {
+        const posts = await fetchData('https://julnys.no/wp-json/wp/v2/posts?_embed&per_page=10');
+        
+        if (!posts) {
+            throw new Error("Failed to fetch posts for the carousel");
+        }
 
-    elements.track.innerHTML = '';
-    for (const post of posts) {
-        const slide = await createSlide(post);
-        elements.track.appendChild(slide);
+        elements.track.innerHTML = '';
+        for (const post of posts) {
+            const slide = await createSlide(post);
+            elements.track.appendChild(slide);
+        }
+
+        updateSlideWidth(elements.track);
+        calculateVisibleSlides(elements);
+        updateButtonVisibility(elements, posts.length);
+        positionSlides(elements.track);
+
+    } catch (error) {
+        console.error("Error loading carousel posts:", error);
+        alert(`Sorry, we couldn't load the carousel posts. Please try again later.`);
     }
-
-    updateSlideWidth(elements.track);
-    calculateVisibleSlides(elements);
-    updateButtonVisibility(elements, posts.length);
-    positionSlides(elements.track);
 };
 
 const createSlide = async (post) => {
@@ -29,7 +38,7 @@ const createSlide = async (post) => {
     const imgSrc = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'default-image.jpg';
 
     const link = document.createElement('a');
-    link.href = `blog-post.html?id=${post.id}`;  
+    link.href = `blog-post.html?id=${post.id}`;
     link.style.textDecoration = 'none';
 
     const img = document.createElement('img');
