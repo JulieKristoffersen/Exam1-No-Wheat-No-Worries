@@ -54,7 +54,8 @@ async function loadCategories() {
 }
 
 function renderCategories(categories) {
-    elements.categoriesContainer.innerHTML = '';
+    const categoriesList = elements.categoriesContainer.querySelector('ul');
+    categoriesList.innerHTML = ''; 
 
     const allCategoriesItem = document.createElement('li');
     allCategoriesItem.textContent = 'All Categories';
@@ -62,7 +63,7 @@ function renderCategories(categories) {
         selectedCategory = '';
         resetBlogPosts();
     });
-    elements.categoriesContainer.appendChild(allCategoriesItem);
+    categoriesList.appendChild(allCategoriesItem);
 
     categories.forEach(category => {
         const categoryItem = document.createElement('li');
@@ -71,7 +72,7 @@ function renderCategories(categories) {
             selectedCategory = category.id;
             resetBlogPosts();
         });
-        elements.categoriesContainer.appendChild(categoryItem);
+        categoriesList.appendChild(categoryItem);
     });
 }
 
