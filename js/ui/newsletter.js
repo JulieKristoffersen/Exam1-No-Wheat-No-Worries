@@ -1,12 +1,22 @@
 document.getElementById('newsletter-form').addEventListener('submit', function(event) {
-    event.preventDefault(); 
+    try {
+        event.preventDefault(); 
 
-    const confirmationMessage = document.getElementById('confirmation-message');
-    confirmationMessage.style.display = 'block';
+        const confirmationMessage = document.getElementById('confirmation-message');
 
-    setTimeout(() => {
-        confirmationMessage.style.display = 'none';
-    }, 3000);
+        if (!confirmationMessage) {
+            throw new Error("Confirmation message element is missing.");
+        }
 
-    event.target.reset();
+        confirmationMessage.style.display = 'block';
+
+        setTimeout(() => {
+            confirmationMessage.style.display = 'none';
+        }, 3000);
+
+        event.target.reset();
+    } catch (error) {
+        console.error("Error during form submission:", error);
+        alert("Sorry, an error occurred while submitting the form. Please try again.");
+    }
 });

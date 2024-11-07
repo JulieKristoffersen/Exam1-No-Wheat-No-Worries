@@ -1,20 +1,25 @@
 export const setupHamburgerMenu = (elements) => {
-    const toggleMenu = (isOpen) => {
-        elements.navLinks.classList.toggle('active', isOpen);
-        elements.hamburger.innerHTML = isOpen ? '&times;' : '&#9776;';
-        elements.hamburger.classList.toggle('is-active', isOpen);
-    };
+    try {
+        if (!elements.hamburger || !elements.navLinks) {
+            throw new Error("Missing hamburger or navigation elements.");
+        }
 
-    if (!elements.hamburger || !elements.navLinks) return;
-    
-    elements.hamburger.addEventListener('click', () => {
-        const isActive = elements.navLinks.classList.contains('active');
-        toggleMenu(!isActive);
-    });
+        const toggleMenu = (isOpen) => {
+            elements.navLinks.classList.toggle('active', isOpen);
+            elements.hamburger.innerHTML = isOpen ? '&times;' : '&#9776;';
+            elements.hamburger.classList.toggle('is-active', isOpen);
+        };
 
-    elements.closeHamburger?.addEventListener('click', () => toggleMenu(false));
+        elements.hamburger.addEventListener('click', () => {
+            const isActive = elements.navLinks.classList.contains('active');
+            toggleMenu(!isActive);
+        });
 
-    document.querySelectorAll('.nav-links a').forEach(item => {
-        item.addEventListener('click', () => toggleMenu(false));
-    });
+        document.querySelectorAll('.nav-links a').forEach(item => {
+            item.addEventListener('click', () => toggleMenu(false));
+        });
+    } catch (error) {
+        console.error("Error setting up hamburger menu:", error);
+        alert(`Sorry, there was an issue setting up the menu. Please reload the page.`);
+    }
 };
