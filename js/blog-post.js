@@ -17,7 +17,7 @@ const blogElements = {
 
 function renderPost(blogPost) {
     const featuredImage = blogPost._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'default-image.jpg';
-    
+
     blogElements.blogTitle.innerText = `No wheat, No worries | ${blogPost.title.rendered}`;
     blogElements.blogContent.innerHTML = `
         <h1>${blogPost.title.rendered}</h1>
@@ -25,8 +25,12 @@ function renderPost(blogPost) {
         <div>${blogPost.content.rendered}</div>
     `;
 
-    setupModal(blogElements.modalImage, blogElements);
+    const postImage = document.querySelector('.post-image');
+    if (postImage) {
+        setupModal(postImage, blogElements);
+    }
 }
+
 
 async function loadBlogPost(blogId) {
     const url = `https://julnys.no/wp-json/wp/v2/posts/${blogId}?_embed`;
