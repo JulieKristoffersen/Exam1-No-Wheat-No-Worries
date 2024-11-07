@@ -26,21 +26,31 @@ let allPostsLoaded = false;
 async function loadBlogs() {
     if (allPostsLoaded) return;
 
-    const blogs = await fetchBlogs(currentPage, postsPerPage, selectedCategory);
+    try {
+        const blogs = await fetchBlogs(currentPage, postsPerPage, selectedCategory);
 
-    if (blogs.length === 0) {
-        allPostsLoaded = true;
-        elements.loadMoreButton.textContent = "No more posts available";
-        elements.loadMoreButton.disabled = true;
-        elements.loadMoreButton.classList.add('disabled');
-    } else {
-        blogs.forEach(post => renderBlogPost(post, elements.blogPostsContainer));
+        if (blogs.length === 0) {
+            allPostsLoaded = true;
+            elements.loadMoreButton.textContent = "No more posts available";
+            elements.loadMoreButton.disabled = true;
+            elements.loadMoreButton.classList.add('disabled');
+        } else {
+            blogs.forEach(post => renderBlogPost(post, elements.blogPostsContainer));
+        }
+    } catch (error) {
+        console.error('Error loading blogs:', error);
+        alert(`Error loading blogs: ${error.message}`);
     }
 }
 
 async function loadCategories() {
-    const categories = await fetchCategories();
-    renderCategories(categories);
+    try {
+        const categories = await fetchCategories();
+        renderCategories(categories);
+    } catch (error) {
+        console.error('Error loading categories:', error);
+        alert(`Error loading categories: ${error.message}`);
+    }
 }
 
 function renderCategories(categories) {

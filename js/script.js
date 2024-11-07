@@ -19,6 +19,17 @@ const elements = {
 };
 
 setupHamburgerMenu(elements);
-loadCarouselPosts(elements);
-setupCarouselNavigation(elements);
-loadFeaturedRecipes(elements);
+
+try {
+    loadCarouselPosts(elements);
+    setupCarouselNavigation(elements);
+    loadFeaturedRecipes(elements);
+} catch (error) {
+    console.error('An error occurred while loading page elements:', error);
+    alert('Sorry, there was an issue loading the page elements. Please try again later.');
+}
+
+window.addEventListener("error", (event) => {
+    console.error("Global error caught:", event.error);
+    alert("An unexpected error occurred. Please try again later.");
+});

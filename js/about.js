@@ -5,11 +5,23 @@ showLoadingIndicator();
 
 window.addEventListener("load", hideLoadingIndicator);
 
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener("error", (event) => {
+    console.error("Global error caught:", event.error);
+    alert("An unexpected error occurred. Please try again later.");
+});
+
+try {
     const elements = {
         hamburger: document.querySelector('.hamburger'),
         navLinks: document.querySelector('.nav-links'),
     };
 
-    setupHamburgerMenu(elements); 
-});
+    if (!elements.hamburger || !elements.navLinks) {
+        throw new Error("Required elements not found.");
+    }
+
+    setupHamburgerMenu(elements);
+} catch (error) {
+    console.error('An error occurred while loading page elements:', error);
+    alert('Sorry, there was an issue loading the page elements. Please try again later.');
+}
