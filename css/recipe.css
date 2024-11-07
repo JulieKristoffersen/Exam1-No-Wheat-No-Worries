@@ -64,10 +64,10 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #categories h2 {
-font-size: 1.5em;
-margin-bottom: 1em;
-color: #4f4f4f;
-text-align: left;
+  font-size: 1.5em;
+  margin-bottom: 1em;
+  color: #4f4f4f;
+  text-align: left;
 }
 
 #categories ul {
