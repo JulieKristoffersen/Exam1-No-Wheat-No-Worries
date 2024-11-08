@@ -4,16 +4,18 @@
     box-sizing: border-box;
 }
 .article-wrapper {
-    margin: 40px auto;
+    margin: 2em auto;
     max-width: 800px;
-    padding: 20px;
+    padding: 2em;
+    border-radius: 8px;
     background-color: #fff;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 #blog-content h1 {
     font-size: 36px;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 #blog-content p {
@@ -31,6 +33,7 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 5px;
 }
 
 .modal {
