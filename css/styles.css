@@ -8,7 +8,6 @@ body {
   flex-direction: column;
 }
 
-
 main {
   flex: 1;
 }
@@ -55,6 +54,7 @@ header {
   margin-left: auto;
   z-index: 100;
 }
+
 .nav-links {
   display: flex;
   gap: 50px;
@@ -63,17 +63,18 @@ header {
   color: white;
 }
 
+.nav-links li a:hover {
+  font-weight: bold;
+  transition: 0s;
+}
+
 .nav-links li a {
   color: white;
-  transition: color 0.3s ease; 
+  transition: color 0.1s ease; 
 }
 
 .nav-links li a.active {
   text-decoration: underline;
-  font-weight: bold;
-}
-
-.nav-links li a:hover {
   font-weight: bold;
 }
 
