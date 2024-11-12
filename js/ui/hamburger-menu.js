@@ -16,7 +16,11 @@ export const setupHamburgerMenu = (elements) => {
         });
 
         document.querySelectorAll('.nav-links a').forEach(item => {
-            item.addEventListener('click', () => toggleMenu(false));
+            item.addEventListener('click', (event) => {
+                document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+                event.target.classList.add('active');
+                toggleMenu(false);
+            });
         });
     } catch (error) {
         console.error("Error setting up hamburger menu:", error);
