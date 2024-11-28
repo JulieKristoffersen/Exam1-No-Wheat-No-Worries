@@ -19,6 +19,7 @@ This project was created using:
 - WordPress API
 - One.com for getting the API
 - Netlify (for deployment)
+- Hotjar for collecting feecbacks
 
 
 
