@@ -21,15 +21,6 @@ This project was created using:
 - Netlify (for deployment)
 - Hotjar for collecting feecbacks
 
-
-
-The Installing and Running sections in your README file suggest steps for projects that involve dependencies and local server setups, often applicable for React, Node.js, or similar frameworks. However, since your project appears to be a static HTML, CSS, and JavaScript site (without dependency management like npm), these steps aren't strictly necessary.
-
-Here’s how to adjust the README to match your project setup:
-
-Revised "Getting Started" Section
-If your project is a static website with no build tools or dependencies, replace the Installing and Running sections like this:
-
 Getting Started
 Installing
 Follow these steps to get the project up and running locally:
