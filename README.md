@@ -1,5 +1,4 @@
-No Wheat, No Worries
-
+Project exam 1: No Wheat, No Worries
 
 "No Wheat, No Worries" is a responsive and user-friendly recipe blog designed to empower individuals with celiac disease or gluten intolerance. It provides a platform for sharing gluten-free recipes, tips, and inspiration for leading a joyful and fulfilling life through food.
 
@@ -20,30 +19,36 @@ This project was created using:
 - WordPress API
 - One.com for getting the API
 - Netlify (for deployment)
+- Hotjar for collecting feecbacks
 
-Installing:
+Getting Started
+Installing
 Follow these steps to get the project up and running locally:
 
-- Clone the repository:
-    - Copy code: git clone [git@github.com:your-username/no-wheat-no-worries.git](https://github.com/JulieKristoffersen/Exam1-No-Wheat-No-Worries.git)
+Clone the repository:
+- Copy code:
+    git clone [git@github.com:your-username/no-wheat-no-worries.git](https://github.com/JulieKristoffersen/Exam1-No-Wheat-No-Worries.git)
   
-- Open the project directory:
-    - Copy code:
-        - cd no-wheat-no-worries
-        - Open the index.html file in your browser to view the site.
+Open the project directory:
+
+- Copy code:
+    cd no-wheat-no-worries
+    Open the index.html file in your browser to view the site.
 
 Running
 To preview the site on a local server (optional), you can use a lightweight development server like Live Server:
 
 - Install Live Server (if you don't already have it):
     - For Visual Studio Code users: Install the Live Server extension.
-    - Right-click index.html in your editor and select Open with Live Server.
-
+        - Right-click index.html in your editor and select Open with Live Server.
 
 Contact
 For questions or feedback, you can reach out via:
 - LinkedIn: www.linkedin.com/in/julie-nk
 - Email: Julnys51546@stud.noroff.no
+
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 Acknowledgments
 Special thanks to:
